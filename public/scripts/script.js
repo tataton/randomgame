@@ -14,10 +14,10 @@ var postMaxNum = function(num) {
   });
 }; // end postMaxNum
 
-var postInputs = function(num) {
+var postInputs = function(thing) {
   $.ajax({
     type: "POST",
-    data: {},
+    data: thing,
     url: '/postInputs',
     success: function(response) {
       console.log('postInputs ajax success');
@@ -39,6 +39,13 @@ $(document).ready(function(){
   }); // end #startButtonnp
   $('#submit').on('click', function(){
     console.log('submit clicked');
+    var inputs = {
+      one:$('#playerOne').val(),
+      two:$('#playerTwo').val(),
+      three:$('#playerThree').val(),
+      four:$('#playerFour').val()
+    };
+    postInputs(inputs);
   }); // end #startButtonnp
 
 });
