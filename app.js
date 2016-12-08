@@ -18,3 +18,9 @@ app.post('/getMax', urlEncodedParser, function(req, res){
   maxNum = req.body.num;
   console.log(maxNum);
 });
+
+app.post('/postInputs', urlEncodedParser, function(req, res){
+  console.log('/postInputs url hit');
+  console.log('req.body:',req.body);
+  res.send(req.body);
+});
