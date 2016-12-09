@@ -9,7 +9,7 @@ function Player(playerName, guess, highLow, howClose){
   this.highLow = highLow;
   this.howClose = howClose;
   playersArray.push(this);
-}
+} // end Player
 
 var postMaxNum = function(num) {
   $.ajax({
@@ -22,7 +22,7 @@ var postMaxNum = function(num) {
     error: function(){
       console.log('get max ajax error');
     }
-  });
+  }); // end ajax
 }; // end postMaxNum
 
 var postInputs = function(playersArray) {
@@ -38,47 +38,36 @@ var postInputs = function(playersArray) {
     error: function(){
       console.log('get max ajax error');
     }
-  });
+  }); // end ajax
 }; // end postMaxNum
 
 function display(replacementArray){
   console.log("Player array after server handling: ", replacementArray);
   for (var i = 0; i < replacementArray.length; i++) {
     $('#pastGuess').append("<p>" + replacementArray[i].playerName + ": " + replacementArray[i].guess + "</p>");
-    $('#pastGuess').append("<p>" + replacementArray[i].howClose + " " + replacementArray[i].highLow +  "</p>");
-  }
-}
-
-
-// function display(){
-//   console.log("Player array after server handling: ", playersArray);
-//   for (var i = 0; i < playersArray.length; i++) {
-//     $('#pastGuess').append("<p>" + playersArray[i].playerName + ": " + playersArray[i].guess + "</p>");
-//     $('#pastGuess').append("<p>" + playersArray[i].howClose + " " + playersArray[i].highLow +  "</p>");
-//   }
-// }
+    $('#pastGuess').append("<p>"+ replacementArray[i].highLow +  "</p>");
+  } // end for
+} // end display
 
 $(document).ready(function(){
-//  console.log('JQ');
   $('#playMode').hide();
   //event listeners
   $('#startButton').on('click', function(){
     counter = 0;
     $('#inputMode').hide();
     $('#playMode').show();
-//    console.log('start clicked');
     var maxNum = $('#maxNumIn').val();
+    $('#maxNumber').html('<h2>Maximum Number: '+maxNum+'</h2>');
     console.log(maxNum);
     postMaxNum(maxNum);
     var playerOne = new Player("Player 1");
     var playerTwo = new Player("Player 2");
     var playerThree = new Player("Player 3");
     var playerFour = new Player("Player 4");
-//    console.log("player test on Start:", playerOne, playersArray);
   }); // end #startButtonnp
 
   $('#submit').on('click', function(){
-//    console.log('submit clicked');
+    $('#pastGuess').html('');
     console.log("Player array before server handling: ", playersArray);
     counter++;
     $('#count').html('<p> Attempts: ' + counter + '</p>');
@@ -86,8 +75,17 @@ $(document).ready(function(){
     playersArray[1].guess = $('#playerTwo').val();
     playersArray[2].guess = $('#playerThree').val();
     playersArray[3].guess = $('#playerFour').val();
-//    console.log("player test on Submit:", playerOne, playersArray);
     postInputs(playersArray);
+    //clear input values
+    $('input').val('');
   }); // end #startButtonnp
 
+  $('#abandon').on('click', function() {
+    console.log('quit clicked');
+    counter = 0;
+    $('#count').html('<p>Attempts: '+ counter + '</p>');
+    $('#pastGuess').html('');
+    $('#playMode').hide();
+    $('#inputMode').show();
+  }); // end #abandon
 });
