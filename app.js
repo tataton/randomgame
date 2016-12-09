@@ -33,10 +33,10 @@ app.post('/postInputs', urlEncodedParser, function(req, res){
   console.log('/postInputs url hit');
 //  console.log('req.body:',req.body);
   playersArray = req.body.array;
-  console.log(playersArray, "gameNumber:", gameNumber, playersArray[0].guess);
+  console.log("playersArray on server:", playersArray, "gameNumber:", gameNumber, playersArray[0].guess);
   compare();
-
-  res.send(playersArray);
+  console.log("playersArray after compare:", playersArray);
+  res.send({array: playersArray});
 }); //postInputs end
 
 function compare(){
