@@ -2,9 +2,10 @@ console.log("Sourced");
 
 var playersArray = [];
 
-function Player(playerName, guess, howClose){
+function Player(playerName, guess, highLow, howClose){
   this.playerName = playerName;
   this.guess = guess;
+  this.highLow = highLow;
   this.howClose = howClose;
   playersArray.push(this);
 }
@@ -23,13 +24,13 @@ var postMaxNum = function(num) {
   });
 }; // end postMaxNum
 
-var postInputs = function(thing) {
+var postInputs = function(playersArray) {
   $.ajax({
     type: "POST",
-    data: thing,
+    data: {array: playersArray},
     url: '/postInputs',
     success: function(response) {
-      console.log('postInputs ajax success');
+      console.log('postInputs ajax success; response:', response);
     },
     error: function(){
       console.log('get max ajax error');
@@ -49,7 +50,7 @@ $(document).ready(function(){
     var playerTwo = new Player("Player 2");
     var playerThree = new Player("Player 3");
     var playerFour = new Player("Player 4");
-    console.log("player test on Start:", playerOne, playersArray);
+//    console.log("player test on Start:", playerOne, playersArray);
   }); // end #startButtonnp
 
   $('#submit').on('click', function(){
@@ -58,7 +59,7 @@ $(document).ready(function(){
     playersArray[1].guess = $('#playerTwo').val();
     playersArray[2].guess = $('#playerThree').val();
     playersArray[3].guess = $('#playerFour').val();
-    console.log("player test on Submit:", playerOne, playersArray);
+//    console.log("player test on Submit:", playerOne, playersArray);
     postInputs(playersArray);
   }); // end #startButtonnp
 
