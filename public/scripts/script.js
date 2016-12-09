@@ -1,13 +1,11 @@
-console.log("Sourced");
-
 var playersArray = [];
 var counter;
+var logs = false;
 
 function Player(playerName, guess, highLow, howClose){
   this.playerName = playerName;
   this.guess = guess;
   this.highLow = highLow;
-  this.howClose = howClose;
   playersArray.push(this);
 } // end Player
 
@@ -17,10 +15,10 @@ var postMaxNum = function(num) {
     data: {num: num},
     url: '/postMax',
     success: function(response) {
-      console.log('postMaxNum ajax success');
+      if (logs) console.log('postMaxNum ajax success');
     },
     error: function(){
-      console.log('get max ajax error');
+      if (logs) console.log('get max ajax error');
     }
   }); // end ajax
 }; // end postMaxNum
@@ -31,18 +29,33 @@ var postInputs = function(playersArray) {
     data: {array: playersArray},
     url: '/postInputs',
     success: function(response) {
-      console.log('postInputs ajax success; response:', response);
-      playersArray = response.array;
-      display(response.array);
+      if (logs) console.log('postInputs ajax success; response:', response);
+      findWinner(response.array);
+      // display(response.array);
     },
     error: function(){
-      console.log('get max ajax error');
+      if (logs) console.log('get max ajax error');
     }
   }); // end ajax
 }; // end postMaxNum
+function findWinner(array) {
+  var foundWinner = false;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].highLow == "Winner") {
+      alert(array[i].playerName + ' wins!');
+      foundWinner = true;
+    } // end if
+  } // end for
+  if (foundWinner === false) {
+    display(array);
+  } else {
+    //display winner
+    $('#abandon').text('Restart Game');
+  } // end else
+} // end findWinner
 
 function display(replacementArray){
-  console.log("Player array after server handling: ", replacementArray);
+  if (logs) console.log("Player array after server handling: ", replacementArray);
   for (var i = 0; i < replacementArray.length; i++) {
     $('#pastGuess').append("<p>" + replacementArray[i].playerName + ": " + replacementArray[i].guess + "</p>");
     $('#pastGuess').append("<p>"+ replacementArray[i].highLow +  "</p>");
@@ -53,12 +66,13 @@ $(document).ready(function(){
   $('#playMode').hide();
   //event listeners
   $('#startButton').on('click', function(){
+    $('#abandon').text('Quit!');
     counter = 0;
     $('#inputMode').hide();
     $('#playMode').show();
     var maxNum = $('#maxNumIn').val();
     $('#maxNumber').html('<h2>Maximum Number: '+maxNum+'</h2>');
-    console.log(maxNum);
+    if (logs) console.log(maxNum);
     postMaxNum(maxNum);
     var playerOne = new Player("Player 1");
     var playerTwo = new Player("Player 2");
@@ -68,7 +82,7 @@ $(document).ready(function(){
 
   $('#submit').on('click', function(){
     $('#pastGuess').html('');
-    console.log("Player array before server handling: ", playersArray);
+    if (logs) console.log("Player array before server handling: ", playersArray);
     counter++;
     $('#count').html('<p> Attempts: ' + counter + '</p>');
     playersArray[0].guess = $('#playerOne').val();
@@ -81,7 +95,7 @@ $(document).ready(function(){
   }); // end #startButtonnp
 
   $('#abandon').on('click', function() {
-    console.log('quit clicked');
+    if (logs) console.log('quit clicked');
     counter = 0;
     $('#count').html('<p>Attempts: '+ counter + '</p>');
     $('#pastGuess').html('');

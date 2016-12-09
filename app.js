@@ -48,27 +48,3 @@ function compare(){
     } // end else/if
   } // end for
 } // end compare
-
-
-// if (playersArray[i].guess == gameNumber) {
-//   playersArray[i].highLow = "winner";
-//   playersArray[i].howClose = "on-fire";
-// } else if (playersArray[i].guess < (gameNumber - (maxNum * 0.3))) {
-//   playersArray[i].highLow = "low";
-//   playersArray[i].howClose = "cold";
-// } else if (playersArray[i].guess < (gameNumber - (maxNum * 0.1))) {
-//   playersArray[i].highLow = "low";
-//   playersArray[i].howClose = "getting-warmer";
-// } else if (playersArray[i].guess > (gameNumber - (maxNum * 0.1)) && (playersArray[i].guess < gameNumber)) {
-//   playersArray[i].highLow = "low";
-//   playersArray[i].howClose = "hot";
-// } else if (playersArray[i].guess > (gameNumber + (maxNum * 0.3))) {
-//   playersArray[i].highLow = "high";
-//   playersArray[i].howClose = "cold";
-// } else if (playersArray[i].guess > (gameNumber + (maxNum * 0.1))) {
-//   playersArray[i].highLow = "high";
-//   playersArray[i].howClose = "getting-warmer";
-// } else if (playersArray[i].guess < (gameNumber + (maxNum * 0.1)) && (playersArray[i].guess > gameNumber)) {
-//   playersArray[i].highLow = "high";
-//   playersArray[i].howClose = "hot";
-// } // end else/if
