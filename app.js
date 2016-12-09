@@ -36,19 +36,27 @@ app.post('/postInputs', urlEncodedParser, function(req, res){
   console.log(playersArray, "gameNumber:", gameNumber, playersArray[0].guess);
   for (var i = 0; i < playersArray.length; i++) {
     if (playersArray[i].guess == gameNumber) {
-      console.log("For loop running");
-      console.log(playersArray[i].playerName + ' wins!!!');
+      playersArray[i].highLow = "winner";
+      playersArray[i].howClose = "on-fire";
+    } else if (playersArray[i].guess < (gameNumber - (maxNum * 0.3))) {
+      playersArray[i].highLow = "low";
+      playersArray[i].howClose = "cold";
+    } else if (playersArray[i].guess < (gameNumber - (maxNum * 0.1))) {
+      playersArray[i].highLow = "low";
+      playersArray[i].howClose = "getting-warmer";
+    } else if (playersArray[i].guess > (gameNumber - (maxNum * 0.1)) && (playersArray[i].guess < gameNumber)) {
+      playersArray[i].highLow = "low";
+      playersArray[i].howClose = "hot";
+    } else if (playersArray[i].guess > (gameNumber + (maxNum * 0.3))) {
+      playersArray[i].highLow = "high";
+      playersArray[i].howClose = "cold";
+    } else if (playersArray[i].guess > (gameNumber + (maxNum * 0.1))) {
+      playersArray[i].highLow = "high";
+      playersArray[i].howClose = "getting-warmer";
+    } else if (playersArray[i].guess < (gameNumber + (maxNum * 0.1)) && (playersArray[i].guess > gameNumber)) {
+      playersArray[i].highLow = "high";
+      playersArray[i].howClose = "hot";
     }
   }
-
-
-
-
-
-
-
-
-
-
   res.send(playersArray);
 }); //postInputs end
