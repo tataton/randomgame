@@ -1,10 +1,14 @@
-console.log("SOurced");
+console.log("Sourced");
+
+//-- Establish global variables. --//
+
+var resultArray;
 
 var postMaxNum = function(num) {
   $.ajax({
     type: "POST",
     data: {num: num},
-    url: '/getMax',
+    url: '/postMax',
     success: function(response) {
       console.log('postMaxNum ajax success');
     },
@@ -14,10 +18,10 @@ var postMaxNum = function(num) {
   });
 }; // end postMaxNum
 
-var postInputs = function(thing) {
+var postInputs = function(postObject) {
   $.ajax({
     type: "POST",
-    data: thing,
+    data: postObject,
     url: '/postInputs',
     success: function(response) {
       console.log('postInputs ajax success');
@@ -36,15 +40,16 @@ $(document).ready(function(){
     var maxNum = $('#maxNumIn').val();
     console.log(maxNum);
     postMaxNum(maxNum);
-  }); // end #startButtonnp
+  }); // end #startButton
+
   $('#submit').on('click', function(){
     console.log('submit clicked');
-    var inputs = {
-      one:$('#playerOne').val(),
-      two:$('#playerTwo').val(),
-      three:$('#playerThree').val(),
-      four:$('#playerFour').val()
-    };
+    var inputs = {inputArray: [
+      $('#playerOne').val(),
+      $('#playerTwo').val(),
+      $('#playerThree').val(),
+      $('#playerFour').val()
+    ]};
     postInputs(inputs);
   }); // end #startButtonnp
 
