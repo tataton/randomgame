@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="vendors/jquery.js"></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
     <meta charset="utf-8">
     <title>Random game!</title>
+    <script type="text/javascript" src="vendors/jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="scripts/script.js"></script>
   </head>
   <body>
-      <h1>Random numbers game!</h1>
-    <div id="inputMode">
-      <select id="maxNumIn">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-      </select>
-      <button type="button" name="button" id="startButton"> Start! </button>
-  </div>
-  <div id="playMode">
-      <div id="maxNumber"></div>
-      <div id="count"></div>
-      <form>
-        <input type="number" id="playerOne">
-        <input type="number" id="playerTwo">
-        <input type="number" id="playerThree">
-        <input type="number" id="playerFour">
-        <button type="button" id="submit">Submit!</button>
-      </form>
-      <div id="pastGuess"></div>
-      <button type="button" id="abandon">Quit!</button>
-  </div>
+    <main class="container">
+      <h1 class="text-center">Random numbers game!</h1>
+      <div id="inputMode" class="text-center">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="maxNumIn">Choose Maximum Number:</label>
+            <select id="maxNumIn" class="form-control">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+          <button type="button" name="button" id="startButton" class="btn btn-default"> Start! </button>
+        </form>
+    </div>
+    <div id="playMode">
+        <div id="maxNumber"></div>
+        <div id="count"></div>
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="playerOne">Player #1: </label>
+            <input type="number" id="playerOne" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="playerTwo">Player #2: </label>
+            <input type="number" id="playerTwo" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="playerThree">Player #3: </label>
+            <input type="number" id="playerThree" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="playerFour">Player #4: </label>
+            <input type="number" id="playerFour" class="form-control">
+          </div>
+          <button type="button" id="submit" class="btn btn-default">Submit!</button>
+        </form>
+        <div id="pastGuess"></div>
+        <button type="button" id="abandon" class="btn btn-default pull-right">Quit!</button>
+    </div>
+  </main>
+
   </body>
 </html>

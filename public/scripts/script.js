@@ -57,13 +57,15 @@ function findWinner(array) {
 function display(replacementArray){
   if (logs) console.log("Player array after server handling: ", replacementArray);
   for (var i = 0; i < replacementArray.length; i++) {
-    $('#pastGuess').append("<p>" + replacementArray[i].playerName + ": " + replacementArray[i].guess + "</p>");
+    $('#pastGuess').append("<p class='player-name'>" + replacementArray[i].playerName + "</p>");
+    $('#pastGuess').append('<p>Last Guess: '+replacementArray[i].guess+'</p>');
     $('#pastGuess').append("<p>"+ replacementArray[i].highLow +  "</p>");
   } // end for
 } // end display
 
 $(document).ready(function(){
   $('#playMode').hide();
+  $('#pastGuess').hide();
   //event listeners
   $('#startButton').on('click', function(){
     $('#abandon').text('Quit!');
@@ -82,6 +84,7 @@ $(document).ready(function(){
 
   $('#submit').on('click', function(){
     $('#pastGuess').html('');
+    $('#pastGuess').show();
     if (logs) console.log("Player array before server handling: ", playersArray);
     counter++;
     $('#count').html('<p> Attempts: ' + counter + '</p>');

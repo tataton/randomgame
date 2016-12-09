@@ -1,7 +1,26 @@
+/* GLOBALS */
+h1 {
+  margin-bottom: 20px;
+}
+h2 {
+  text-align: center;
+}
+form {
+  margin: 20px auto;
+}
+p {
+  font-size: 20px;
+}
+/* lAYOUT */
 #playMode {
   display: none;
 }
 #pastGuess {
   min-height: 10px;
   border: solid black 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+.player-name {
+  text-decoration: underline;
 }
